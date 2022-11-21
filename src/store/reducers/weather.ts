@@ -107,10 +107,13 @@ const initialState: WeatherState = {
 	loading: false
 };
 
-export const weatherSlice = createSlice({
+const weatherSlice = createSlice({
 	name: 'weather',
 	initialState,
 	reducers: {
+		clearWeather: state => {
+			state.data = null;
+		},
 		clearError: state => {
 			state.error = null;
 		}
@@ -129,7 +132,6 @@ export const weatherSlice = createSlice({
 		);
 		builder.addCase(fetchWeather.rejected, (state, action) => {
 			state.loading = false;
-			state.data = null;
 			if (action.payload) {
 				state.error = action.payload.message;
 			} else {
@@ -139,7 +141,7 @@ export const weatherSlice = createSlice({
 	}
 });
 
-export const { clearError } = weatherSlice.actions;
+export const { clearWeather, clearError } = weatherSlice.actions;
 
 export const selectWeather = (state: RootState) => state.weather;
 

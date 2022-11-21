@@ -16,7 +16,7 @@ const initialState: PositionState = {
 	position: null
 };
 
-export const positionSlice = createSlice({
+const positionSlice = createSlice({
 	name: 'position',
 	initialState,
 	reducers: {

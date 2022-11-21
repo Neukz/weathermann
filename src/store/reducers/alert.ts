@@ -9,7 +9,7 @@ const initialState: AlertState = {
 	alert: null
 };
 
-export const alertSlice = createSlice({
+const alertSlice = createSlice({
 	name: 'alert',
 	initialState,
 	reducers: {
