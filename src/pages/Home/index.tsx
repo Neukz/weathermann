@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
-import Alert from 'react-bootstrap/Alert';
 import Map from '../../components/Map';
+import AlertStack from '../../layout/AlertStack';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks/reduxTypedHooks';
 import {
@@ -11,7 +11,6 @@ import {
 	selectWeather,
 	fetchWeather,
 	clearWeather,
-	selectAlert,
 	clearAlert,
 	clearError
 } from '../../store';
@@ -20,8 +19,7 @@ import { useUnits } from '../../hooks/useUnits';
 const Home = () => {
 	const [units] = useUnits();
 	const { position } = useAppSelector(selectPosition);
-	const { loading, data, error } = useAppSelector(selectWeather);
-	const { alert } = useAppSelector(selectAlert);
+	const { loading, data } = useAppSelector(selectWeather);
 	const dispatch = useAppDispatch();
 
 	const navigate = useNavigate();
@@ -48,25 +46,7 @@ const Home = () => {
 		<Container fluid className="p-0 overflow-hidden">
 			<Map />
 
-			<Alert
-				className="w-75 mx-auto mt-3"
-				variant="warning"
-				dismissible
-				show={alert !== null}
-				onClose={() => dispatch(clearAlert())}
-			>
-				{alert}
-			</Alert>
-
-			<Alert
-				className="w-75 mx-auto mt-3"
-				variant="danger"
-				dismissible
-				show={error !== null}
-				onClose={() => dispatch(clearError())}
-			>
-				{error}
-			</Alert>
+			<AlertStack />
 
 			<Button
 				size="lg"
