@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
 import { Position } from './position';
-import { Units } from '../../hooks/useUnits';
+import { Units } from './units';
 import axios, { AxiosError } from 'axios';
 
 // Response schema from OpenWeatherMap API

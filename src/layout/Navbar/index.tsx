@@ -4,12 +4,14 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
-import { useUnits } from '../../hooks/useUnits';
+import { useAppSelector, useAppDispatch } from '../../hooks/reduxTypedHooks';
+import { selectUnits, toggleUnits } from '../../store';
 import { links } from '../../constants/links';
 import { weatherUnits } from '../../constants/units';
 
 const Navbar = () => {
-	const [units, toggleUnits] = useUnits();
+	const { units } = useAppSelector(selectUnits);
+	const dispatch = useAppDispatch();
 
 	return (
 		<BSNavbar bg="primary" variant="dark" expand="md">
@@ -25,7 +27,7 @@ const Navbar = () => {
 							<Container>
 								<Form.Switch
 									checked={units === 'imperial'}
-									onChange={toggleUnits}
+									onChange={() => dispatch(toggleUnits())}
 									label={<span>{weatherUnits.temp[units]}</span>}
 								/>
 							</Container>

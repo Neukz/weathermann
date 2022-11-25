@@ -7,6 +7,7 @@ export const store = configureStore({
 
 export * from './reducers/position';
 export * from './reducers/weather';
+export * from './reducers/units';
 export * from './reducers/alert';
 
 export type RootState = ReturnType<typeof store.getState>;

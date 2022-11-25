@@ -11,15 +11,15 @@ import {
 	selectWeather,
 	fetchWeather,
 	clearWeather,
+	selectUnits,
 	clearAlert,
 	clearError
 } from '../../store';
-import { useUnits } from '../../hooks/useUnits';
 
 const Home = () => {
-	const [units] = useUnits();
 	const { position } = useAppSelector(selectPosition);
 	const { loading, data } = useAppSelector(selectWeather);
+	const { units } = useAppSelector(selectUnits);
 	const dispatch = useAppDispatch();
 
 	const navigate = useNavigate();
