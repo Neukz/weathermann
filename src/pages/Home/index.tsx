@@ -1,6 +1,6 @@
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
 import Map from '../../components/Map';
+import Button from '../../components/Button';
 import AlertStack from '../../layout/AlertStack';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks/reduxTypedHooks';
@@ -24,13 +24,8 @@ const Home = () => {
 
 			<AlertStack />
 
-			<Button
-				size="lg"
-				className="d-block mx-auto mt-3 px-5"
-				disabled={!position}
-				onClick={handleClick}
-			>
-				Get weather
+			<Button disabled={!position} onClick={handleClick}>
+				Get Weather
 			</Button>
 		</Container>
 	);

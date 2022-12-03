@@ -1,7 +1,7 @@
+import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
-import Button from 'react-bootstrap/Button';
-import { useNavigate } from 'react-router-dom';
+import Button from '../../components/Button';
 
 const NotFound = () => {
 	const navigate = useNavigate();
@@ -18,12 +18,7 @@ const NotFound = () => {
 				alt=""
 			/>
 
-			<Button
-				variant="warning"
-				size="lg"
-				className="d-block mx-auto mt-3 px-5"
-				onClick={() => navigate(-1)}
-			>
+			<Button variant="warning" onClick={() => navigate(-1)}>
 				Back
 			</Button>
 		</Container>
