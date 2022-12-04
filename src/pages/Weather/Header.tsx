@@ -1,23 +1,22 @@
 import Moment from 'react-moment';
 import { useAppSelector } from '../../hooks/reduxTypedHooks';
-import { selectWeather } from '../../store';
 
 const Header = () => {
-	const { data } = useAppSelector(selectWeather);
+	const current = useAppSelector(state => state.weather.data?.current);
 
 	return (
 		<header className="text-center">
-			{data?.current.name && data.current.sys.country && (
+			{current?.name && current.sys.country && (
 				<h1>
-					{data.current.name}, {data.current.sys.country}
+					{current.name}, {current.sys.country}
 				</h1>
 			)}
 
 			<Moment
 				className="text-muted"
 				utc
-				date={data?.current.dt! * 1000}
-				add={{ seconds: data?.current.timezone }}
+				date={current?.dt! * 1000}
+				add={{ seconds: current?.timezone }}
 				format="D MMM, hLT"
 			/>
 		</header>
