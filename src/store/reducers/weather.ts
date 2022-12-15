@@ -3,6 +3,8 @@ import { RootState } from '..';
 import { Position } from './position';
 import { Units } from './units';
 import axios, { AxiosError } from 'axios';
+import moment from 'moment';
+import { timeOfDay } from '../../constants/timeOfDay';
 
 // Responses from OpenWeatherMap API
 interface CurrentWeather {
@@ -122,6 +124,16 @@ interface Forecast {
 	};
 }
 
+// Forecast data grouped by day
+interface GroupedForecast {
+	[key: string]: [
+		{
+			name: 'night' | 'morning' | 'afternoon' | 'evening';
+			data: Forecast['list'][0];
+		}
+	];
+}
+
 // Response from proxy server
 interface Response {
 	current: CurrentWeather;
@@ -134,7 +146,11 @@ interface ResponseError {
 }
 
 interface WeatherState {
-	data: Response | null;
+	data: {
+		current: CurrentWeather;
+		forecast: GroupedForecast;
+		air: Air;
+	} | null;
 	error: string | null;
 	loading: boolean;
 }
@@ -197,7 +213,27 @@ const weatherSlice = createSlice({
 			fetchWeather.fulfilled,
 			(state, action: PayloadAction<Response>) => {
 				state.loading = false;
-				state.data = action.payload;
+				// Group forecast data by day and leave only forecasts for night, morning, afternoon and evening
+				const groupedForecast = action.payload.forecast.list.reduce(
+					(acc, curr) => {
+						const date = moment(curr.dt_txt).format('YYYY-MM-DD');
+						if (!acc[date]) {
+							// @ts-ignore
+							acc[date] = [];
+						}
+						const name = timeOfDay.get(moment(curr.dt_txt).format('HH'));
+						if (name) {
+							acc[date].push({ name, data: curr });
+						}
+						return acc;
+					},
+					{} as GroupedForecast
+				);
+				state.data = {
+					current: action.payload.current,
+					forecast: groupedForecast,
+					air: action.payload.air
+				};
 				state.error = null;
 			}
 		);
