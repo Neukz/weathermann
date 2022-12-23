@@ -6,6 +6,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import Header from './Header';
 import CurrentWeather from './CurrentWeather';
 import AirPollution from './AirPollution';
+import Forecast from './Forecast';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks/reduxTypedHooks';
 import {
@@ -52,12 +53,16 @@ const Weather = () => {
 		<Container className="my-3">
 			<Header />
 
-			<Row xs={1} md={2} lg={3} xxl={4} className="mt-3">
-				<Col>
+			<Row xs={1} sm={2} lg={3} className="mt-1 gy-3">
+				<Col sm={12} md={8} lg={5} className="mx-auto">
 					<CurrentWeather />
 				</Col>
 
-				<Col className="my-3 my-md-0">
+				<Col sm={7}>
+					<Forecast />
+				</Col>
+
+				<Col sm={5} lg={3}>
 					<AirPollution />
 				</Col>
 			</Row>
