@@ -16,8 +16,8 @@ const CurrentWeather = () => {
 		<Card>
 			<Card.Header className="text-center">Current Weather</Card.Header>
 			<Card.Body>
-				<Container className="p-0">
-					<Row>
+				<Container>
+					<Row xs={2} className="gx-sm-5 gx-lg-3 gx-xl-5">
 						<Col>
 							<Card.Title className="fs-3 d-flex align-items-center">
 								{current?.weather[0].icon && (
@@ -57,17 +57,15 @@ const CurrentWeather = () => {
 								/>
 							</Card.Text>
 						</Col>
-					</Row>
 
-					<Row xs={2} className="mt-2 text-muted">
-						<Col>
+						<Col className="mt-2">
 							<Card.Text>
 								<i className="bi-thermometer-half" /> Pressure:{' '}
 								{current?.main.pressure}hPa
 							</Card.Text>
 						</Col>
 
-						<Col>
+						<Col className="mt-2">
 							<Card.Text>
 								<i className="bi-wind" /> Wind: {current?.wind.speed}
 								{weatherUnits.speed[units]}
