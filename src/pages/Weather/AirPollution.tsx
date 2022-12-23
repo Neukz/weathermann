@@ -1,5 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Badge from 'react-bootstrap/Badge';
 import { useAppSelector } from '../../hooks/reduxTypedHooks';
 import { airQuality } from '../../constants/airQuality';
 
@@ -41,9 +42,9 @@ const AirPollution = () => {
 				}
 			>
 				{airQuality.get(air?.list[0].main.aqi!)?.value}{' '}
-				<span className="text-muted fw-normal">
-					(AQI {air?.list[0].main.aqi})
-				</span>
+				<Badge pill bg="secondary">
+					AQI {air?.list[0].main.aqi}
+				</Badge>
 			</Card.Footer>
 		</Card>
 	);
