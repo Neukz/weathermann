@@ -6,8 +6,8 @@ import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks/reduxTypedHooks';
 import { selectUnits, toggleUnits } from '../../store';
-import { links } from '../../constants/links';
 import { weatherUnits } from '../../constants/units';
+import { projectRepo } from '../../constants/links';
 
 const Navbar = () => {
 	const { units } = useAppSelector(selectUnits);
@@ -32,7 +32,7 @@ const Navbar = () => {
 								/>
 							</Container>
 							<NavDropdown.Divider />
-							<NavDropdown.Item href={links.projectRepo} target="_blank">
+							<NavDropdown.Item href={projectRepo} target="_blank">
 								<i className="bi-github" /> Source
 							</NavDropdown.Item>
 						</NavDropdown>
