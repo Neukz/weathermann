@@ -8,6 +8,7 @@ import CurrentWeather from './CurrentWeather';
 import AirPollution from './AirPollution';
 import Forecast from './Forecast';
 import { useNavigate } from 'react-router-dom';
+import { useTitle } from 'react-use';
 import { useAppSelector, useAppDispatch } from '../../hooks/reduxTypedHooks';
 import {
 	selectPosition,
@@ -19,9 +20,11 @@ import {
 
 const Weather = () => {
 	const { position } = useAppSelector(selectPosition);
-	const { loading, error } = useAppSelector(selectWeather);
+	const { data, loading, error } = useAppSelector(selectWeather);
 	const { units } = useAppSelector(selectUnits);
 	const dispatch = useAppDispatch();
+
+	useTitle(data?.current.name || 'Weather');
 
 	const navigate = useNavigate();
 

@@ -1,9 +1,12 @@
-import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import Button from '../../components/Button';
+import { useNavigate } from 'react-router-dom';
+import { useTitle } from 'react-use';
 
 const NotFound = () => {
+	useTitle('404 - Page Not Found');
+
 	const navigate = useNavigate();
 
 	return (

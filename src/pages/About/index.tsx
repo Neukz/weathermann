@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Image from 'react-bootstrap/Image';
+import { useTitle } from 'react-use';
 import {
 	openWeatherMap,
 	proxyRepo,
@@ -9,6 +10,8 @@ import {
 } from '../../constants/links';
 
 const About = () => {
+	useTitle('About');
+
 	return (
 		<Container className="mt-4 mb-3 text-center text-md-start lh-1">
 			<p className="fs-5">

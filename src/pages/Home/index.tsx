@@ -3,10 +3,13 @@ import Map from '../../components/Map';
 import Button from '../../components/Button';
 import AlertStack from '../../layout/AlertStack';
 import { useNavigate } from 'react-router-dom';
+import { useTitle } from 'react-use';
 import { useAppSelector, useAppDispatch } from '../../hooks/reduxTypedHooks';
 import { selectPosition, clearAlert, clearError } from '../../store';
 
 const Home = () => {
+	useTitle('Weathermann');
+
 	const { position } = useAppSelector(selectPosition);
 	const dispatch = useAppDispatch();
 
