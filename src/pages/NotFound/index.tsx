@@ -7,7 +7,7 @@ const NotFound = () => {
 	const navigate = useNavigate();
 
 	return (
-		<Container className="mt-3">
+		<Container className="my-3">
 			<header>
 				<h1 className="text-center">Page Not Found</h1>
 			</header>

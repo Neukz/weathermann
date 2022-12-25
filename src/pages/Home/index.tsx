@@ -19,7 +19,7 @@ const Home = () => {
 	};
 
 	return (
-		<Container fluid className="p-0 overflow-hidden">
+		<Container fluid className="p-0 mb-3 overflow-hidden">
 			<Map />
 
 			<AlertStack />
