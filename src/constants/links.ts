@@ -1,3 +1,9 @@
+import react from '../assets/react.svg';
+import reduxToolkit from '../assets/redux-toolkit.svg';
+import reactBootstrap from '../assets/react-bootstrap.svg';
+import reactLeaflet from '../assets/react-leaflet.svg';
+import typescript from '../assets/typescript.svg';
+
 // Outgoing links
 export const projectRepo = 'https://github.com/Neukz/weathermann';
 export const proxyRepo = 'https://github.com/Neukz/neukz-api';
@@ -7,26 +13,26 @@ export const techStack = [
 	{
 		name: 'React',
 		href: 'https://reactjs.org',
-		imagePath: 'src/assets/react.svg'
+		imagePath: react
 	},
 	{
 		name: 'Redux Toolkit',
 		href: 'https://redux-toolkit.js.org',
-		imagePath: 'src/assets/redux-toolkit.svg'
+		imagePath: reduxToolkit
 	},
 	{
 		name: 'React Bootstrap',
 		href: 'https://react-bootstrap.github.io',
-		imagePath: 'src/assets/react-bootstrap.svg'
+		imagePath: reactBootstrap
 	},
 	{
 		name: 'React Leaflet',
 		href: 'https://react-leaflet.js.org',
-		imagePath: 'src/assets/react-leaflet.svg'
+		imagePath: reactLeaflet
 	},
 	{
 		name: 'TypeScript',
 		href: 'https://www.typescriptlang.org',
-		imagePath: 'src/assets/typescript.svg'
+		imagePath: typescript
 	}
 ];
