@@ -1,4 +1,4 @@
-import Moment from 'react-moment';
+import dayjs from '../../utils/dayjs';
 import { useAppSelector } from '../../hooks/reduxTypedHooks';
 
 const Header = () => {
@@ -12,13 +12,13 @@ const Header = () => {
 				</h1>
 			)}
 
-			<Moment
-				className="text-muted"
-				utc
-				date={current?.dt! * 1000}
-				add={{ seconds: current?.timezone }}
-				format="D MMM, hLT"
-			/>
+			<time className="text-muted">
+				{dayjs
+					.unix(current?.dt!)
+					.add(current?.timezone!, 'second')
+					.utc()
+					.format('DD MMM, hh:mm A')}
+			</time>
 		</header>
 	);
 };

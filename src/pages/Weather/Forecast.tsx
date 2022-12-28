@@ -1,7 +1,7 @@
 import Accordion from 'react-bootstrap/Accordion';
 import Table from 'react-bootstrap/Table';
 import Image from 'react-bootstrap/Image';
-import Moment from 'react-moment';
+import dayjs from '../../utils/dayjs';
 import { useAppSelector } from '../../hooks/reduxTypedHooks';
 import { selectUnits } from '../../store';
 import { weatherUnits } from '../../constants/units';
@@ -16,7 +16,7 @@ const Forecast = () => {
 				Object.keys(forecast).map((day, index) => (
 					<Accordion.Item key={index} eventKey={index.toString()}>
 						<Accordion.Header>
-							<Moment utc date={day} format="ddd, MMM Do" />
+							<time>{dayjs(day).format('ddd, MMM Do')}</time>
 						</Accordion.Header>
 						<Accordion.Body className="py-1">
 							<Table size="sm">

@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
-import Moment from 'react-moment';
+import dayjs from '../../utils/dayjs';
 import { useAppSelector } from '../../hooks/reduxTypedHooks';
 import { selectUnits } from '../../store';
 import { weatherUnits } from '../../constants/units';
@@ -39,22 +39,24 @@ const CurrentWeather = () => {
 						<Col className="text-nowrap">
 							<Card.Text className="mt-2 mb-0">
 								<i className="bi-sunrise" />{' '}
-								<Moment
-									utc
-									date={current?.sys.sunrise! * 1000}
-									add={{ seconds: current?.timezone }}
-									format="hh:mm A"
-								/>
+								<time>
+									{dayjs
+										.unix(current?.sys.sunrise!)
+										.add(current?.timezone!, 'second')
+										.utc()
+										.format('hh:mm A')}
+								</time>
 							</Card.Text>
 
 							<Card.Text>
 								<i className="bi-sunset" />{' '}
-								<Moment
-									utc
-									date={current?.sys.sunset! * 1000}
-									add={{ seconds: current?.timezone }}
-									format="hh:mm A"
-								/>
+								<time>
+									{dayjs
+										.unix(current?.sys.sunset!)
+										.add(current?.timezone!, 'second')
+										.utc()
+										.format('hh:mm A')}
+								</time>
 							</Card.Text>
 						</Col>
 

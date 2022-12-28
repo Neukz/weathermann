@@ -3,7 +3,7 @@ import { RootState } from '..';
 import { Position } from './position';
 import { Units } from './units';
 import axios, { AxiosError } from 'axios';
-import moment from 'moment';
+import dayjs from '../../utils/dayjs';
 import { timeOfDay } from '../../constants/timeOfDay';
 
 // Responses from OpenWeatherMap API
@@ -161,12 +161,12 @@ const weatherSlice = createSlice({
 				// Group forecast data by day and leave only forecasts for night, morning, afternoon and evening
 				const groupedForecast = action.payload.forecast.list.reduce(
 					(acc, curr) => {
-						const date = moment(curr.dt_txt).format('YYYY-MM-DD');
+						const date = dayjs(curr.dt_txt).format('YYYY-MM-DD');
 						if (!acc[date]) {
 							// @ts-ignore
 							acc[date] = [];
 						}
-						const name = timeOfDay.get(moment(curr.dt_txt).format('HH'));
+						const name = timeOfDay.get(dayjs(curr.dt_txt).format('HH'));
 						if (name) {
 							acc[date].push({ name, data: curr });
 						}
