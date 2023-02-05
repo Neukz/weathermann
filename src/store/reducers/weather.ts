@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
-import { Position } from './position';
 import { Units } from './units';
 import axios, { AxiosError } from 'axios';
 import dayjs from '../../utils/dayjs';
@@ -103,7 +102,7 @@ interface WeatherState {
 export const fetchWeather = createAsyncThunk<
 	Response,
 	{
-		position: Position;
+		position: google.maps.LatLngLiteral;
 		units: Units;
 	},
 	{

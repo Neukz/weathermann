@@ -1,7 +1,6 @@
 import react from '../assets/react.svg';
 import reduxToolkit from '../assets/redux-toolkit.svg';
 import reactBootstrap from '../assets/react-bootstrap.svg';
-import reactLeaflet from '../assets/react-leaflet.svg';
 import typescript from '../assets/typescript.svg';
 
 // Outgoing links
@@ -24,11 +23,6 @@ export const techStack = [
 		name: 'React Bootstrap',
 		href: 'https://react-bootstrap.github.io',
 		imagePath: reactBootstrap
-	},
-	{
-		name: 'React Leaflet',
-		href: 'https://react-leaflet.js.org',
-		imagePath: reactLeaflet
 	},
 	{
 		name: 'TypeScript',

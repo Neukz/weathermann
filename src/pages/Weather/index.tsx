@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Spinner from 'react-bootstrap/Spinner';
 import Header from './Header';
 import CurrentWeather from './CurrentWeather';
 import AirPollution from './AirPollution';
 import Forecast from './Forecast';
+import Spinner from '../../components/Spinner';
 import { useNavigate } from 'react-router-dom';
 import { useTitle } from 'react-use';
 import { useAppSelector, useAppDispatch } from '../../hooks/reduxTypedHooks';
@@ -42,14 +42,7 @@ const Weather = () => {
 	}, [units, error]);
 
 	if (loading) {
-		return (
-			<Spinner
-				variant="primary"
-				animation="grow"
-				role="status"
-				className="d-block mx-auto mt-5"
-			/>
-		);
+		return <Spinner />;
 	}
 
 	return (

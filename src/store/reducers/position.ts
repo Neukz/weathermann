@@ -1,15 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
-
-// Use object literal interface as it's not recommended to use non-seriazable values in Redux
-// See: https://redux.js.org/faq/actions#why-should-type-be-a-string-or-at-least-serializable-why-should-my-action-types-be-constants
-export interface Position {
-	lat: number;
-	lng: number;
-}
-
 interface PositionState {
-	position: Position | null;
+	position: google.maps.LatLngLiteral | null;
 }
 
 const initialState: PositionState = {
@@ -20,7 +12,7 @@ const positionSlice = createSlice({
 	name: 'position',
 	initialState,
 	reducers: {
-		setPosition: (state, action: PayloadAction<Position>) => {
+		setPosition: (state, action: PayloadAction<google.maps.LatLngLiteral>) => {
 			state.position = action.payload;
 		}
 	}

@@ -1,28 +1,21 @@
 import { useEffect } from 'react';
-import { Marker, useMapEvents } from 'react-leaflet';
-import { useAppSelector, useAppDispatch } from '../../hooks/reduxTypedHooks';
-import { selectPosition, setPosition } from '../../store';
-import { latLngToObject } from '../../utils/latLngToObject';
+import { MarkerF, useGoogleMap } from '@react-google-maps/api';
+import { useAppSelector } from '../../hooks/reduxTypedHooks';
+import { selectPosition } from '../../store';
 
 const LocationMarker = () => {
+	const map = useGoogleMap();
+
 	const { position } = useAppSelector(selectPosition);
-	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		map.locate();
-	}, []);
-
-	const map = useMapEvents({
-		click(e) {
-			dispatch(setPosition(latLngToObject(e.latlng)));
-		},
-		locationfound(e) {
-			dispatch(setPosition(latLngToObject(e.latlng)));
-			map.flyTo(e.latlng, 13, { animate: false });
+		if (position) {
+			map?.setZoom(12);
+			map?.panTo(position);
 		}
-	});
+	}, [position]);
 
-	return position === null ? null : <Marker position={position} />;
+	return position === null ? null : <MarkerF position={position} />;
 };
 
 export default LocationMarker;

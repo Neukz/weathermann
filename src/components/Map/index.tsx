@@ -1,21 +1,53 @@
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { useEffect, useMemo } from 'react';
+import { GoogleMap } from '@react-google-maps/api';
 import LocationMarker from './LocationMarker';
+import { useAppDispatch } from '../../hooks/reduxTypedHooks';
+import { setPosition } from '../../store';
+import { useGeolocation } from '../../hooks/useGeolocation';
 
 const Map = () => {
-	return (
-		<MapContainer
-			style={{ height: '480px' }}
-			center={{ lat: 51.505, lng: -0.09 }}
-			zoom={3}
-		>
-			<TileLayer
-				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-			/>
+	const dispatch = useAppDispatch();
 
+	const geolocation = useGeolocation();
+	const center = useMemo(() => {
+		if (geolocation) {
+			return {
+				lat: geolocation.coords.latitude,
+				lng: geolocation.coords.longitude
+			};
+		}
+
+		return {
+			lat: 51.505,
+			lng: -0.09
+		};
+	}, []);
+
+	useEffect(() => {
+		if (geolocation) {
+			dispatch(
+				setPosition({
+					lat: geolocation.coords.latitude,
+					lng: geolocation.coords.longitude
+				})
+			);
+		}
+	}, [geolocation]);
+
+	return (
+		<GoogleMap
+			mapContainerStyle={containerStyle}
+			center={center}
+			zoom={3}
+			onClick={e => dispatch(setPosition(e.latLng!.toJSON()))}
+		>
 			<LocationMarker />
-		</MapContainer>
+		</GoogleMap>
 	);
+};
+
+const containerStyle: React.CSSProperties = {
+	height: '480px'
 };
 
 export default Map;
